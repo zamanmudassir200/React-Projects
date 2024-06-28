@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 
 const ImageSlider = ({ url, page, limit }) => {
   const [images, setImages] = useState([]);
@@ -52,55 +53,53 @@ const ImageSlider = ({ url, page, limit }) => {
   };
   return (
     <>
-      <div className="">
-        <div className="relative w-screen gap-1 overflow-hidden border-red-400 flex items-start justify-center">
-          <button
-            onClick={handlePrevImage}
-            className="absolute top-[260px] left-10 bg-black text-white p-4 rounded-full"
-          >
-            previous
-          </button>
-          {images && images.length
-            ? images.map((imgItem, index) => {
-                return (
-                  <img
-                    key={imgItem.id}
-                    className={`${
-                      currentSlide === index
-                        ? "rounded-[8px] shadow-[0px 0px 7px #666] w-[100%] h-[600px]"
-                        : "hidden"
-                    } `}
-                    src={imgItem.download_url}
-                    alt={imgItem.download_url}
-                  />
-                );
-              })
-            : null}
-          <button
-            onClick={handleNextImage}
-            className="absolute top-[260px] right-10 bg-black text-white p-4 rounded-full"
-          >
-            next
-          </button>
-          <div className="absolute bottom-[30px] flex">
-            <span className="">
-              {images && images.length
-                ? images.map((_, index) => {
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={` ${
-                          currentSlide !== index
-                            ? "bg-gray-600 rounded-full w-[15px] h-[15px] m-[2px] "
-                            : "rounded-full w-[15px] h-[15px] m-[2px] bg-white"
-                        } `}
-                      ></button>
-                    );
-                  })
-                : null}
-            </span>
-          </div>
+      <div className="relative w-screen gap-1 overflow-hidden border-red-400 flex items-start justify-center">
+        <button
+          onClick={handlePrevImage}
+          className="active:scale-[1.05] transition-all opacity-[0.7] active:bg-purple-700 absolute top-[260px] left-5 bg-black text-white p-4 rounded-full"
+        >
+          <FaArrowCircleLeft size={30} />
+        </button>
+        {images && images.length
+          ? images.map((imgItem, index) => {
+              return (
+                <img
+                  key={imgItem.id}
+                  className={`${
+                    currentSlide === index
+                      ? " shadow-[0px 0px 7px #666] w-[100%] h-[600px]"
+                      : "hidden"
+                  } `}
+                  src={imgItem.download_url}
+                  alt={imgItem.download_url}
+                />
+              );
+            })
+          : null}
+        <button
+          onClick={handleNextImage}
+          className="active:scale-[1.05] active:bg-purple-700 opacity-[0.7] transition-all absolute top-[260px] right-5 bg-black text-white p-4 rounded-full"
+        >
+          <FaArrowCircleRight size={30} />
+        </button>
+        <div className="absolute bottom-[30px] flex">
+          <span className="">
+            {images && images.length
+              ? images.map((_, index) => {
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={` ${
+                        currentSlide !== index
+                          ? "bg-purple-600 rounded-full w-[15px] h-[15px] m-[2px] "
+                          : "rounded-full w-[15px] h-[15px] m-[2px] bg-white"
+                      } `}
+                    ></button>
+                  );
+                })
+              : null}
+          </span>
         </div>
       </div>
     </>
