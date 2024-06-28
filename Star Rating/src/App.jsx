@@ -1,7 +1,12 @@
 import "./App.css";
+import StarRating from "./components/StarRating";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <StarRating noOfStars={10} />
+    </>
+  );
 }
 
 export default App;
