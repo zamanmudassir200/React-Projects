@@ -5,9 +5,8 @@ const Accordion = () => {
   const [selected, setSelected] = useState(null);
   const [enableMultiSelection, setEnableMultiSelection] = useState(false);
   const [multipleIds, setMultipleIds] = useState([]);
-  const handleAccordion = (id) => {
-    const accordionOpen = data.filter((item) => id === item.id);
-    console.log(id);
+  const handleSingleSelection = (id) => {
+    data.filter((item) => id === item.id);
     setSelected(id === selected ? null : id);
   };
 
@@ -20,7 +19,6 @@ const Accordion = () => {
       copyMultipleIds.splice(findids, 1);
     }
     setMultipleIds(copyMultipleIds);
-    console.log(findids, copyMultipleIds);
   };
   return (
     <>
@@ -32,7 +30,7 @@ const Accordion = () => {
               className="bg-purple-900 p-2 text-white rounded-md"
             >
               {enableMultiSelection
-                ? " Single Selection"
+                ? " Enable Single Selection"
                 : "Enable Multi Selection"}
             </button>
           </div>
@@ -49,7 +47,7 @@ const Accordion = () => {
                     onClick={
                       enableMultiSelection
                         ? () => handleMultiSelection(item.id)
-                        : () => handleAccordion(item.id)
+                        : () => handleSingleSelection(item.id)
                     }
                   >
                     +
