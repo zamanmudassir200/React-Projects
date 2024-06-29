@@ -62,7 +62,7 @@ const LoadMore = () => {
     );
   }
   return (
-    <main className="bg-pink-300 py-4 text-center gap-2 flex flex-col min-h-screen ">
+    <main className="bg-pink-300 py-4  text-center gap-3 flex flex-col min-h-screen ">
       <div className="max-w-[1300px] flex flex-wrap items-center  justify-center gap-4 p-2  mx-auto">
         {products.map((product) => {
           return (
