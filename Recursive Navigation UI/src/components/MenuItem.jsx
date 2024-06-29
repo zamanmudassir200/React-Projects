@@ -12,11 +12,14 @@ const MenuItem = ({ item }) => {
     console.log(displayCurrentChildren);
   };
   return (
-    <li className="text-2xl   ">
+    <li className="text-2xl underline  ">
       <div className="flex gap-3 items-center ">
         <p className="">{item.label}</p>
         {item && item.children && item.children.length > 0 ? (
-          <span onClick={() => handleToggleChildren(item.label)}>
+          <span
+            className="cursor-pointer"
+            onClick={() => handleToggleChildren(item.label)}
+          >
             {displayCurrentChildren[item.label] ? (
               <FaMinus size={15} />
             ) : (
@@ -29,7 +32,7 @@ const MenuItem = ({ item }) => {
       item.children &&
       item.children.length > 0 &&
       displayCurrentChildren[item.label] ? (
-        <MenuList list={item.children} />
+        <MenuList className="ml-6" list={item.children} />
       ) : null}
     </li>
   );
