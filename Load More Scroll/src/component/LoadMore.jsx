@@ -5,6 +5,7 @@ const LoadMore = () => {
   const [products, setProducts] = useState([]);
   const [count, setCount] = useState(0);
   const [errMsg, setErrMsg] = useState(null);
+  const [disableBtn, setDisableBtn] = useState(false);
   const fetchProducts = async () => {
     try {
       setLoading(true);
@@ -15,6 +16,14 @@ const LoadMore = () => {
       );
       const data = await response.json();
       console.log(data.total);
+      console.log(data.products);
+      if (
+        data.products.length < 20 ||
+        products.length + data.products.length >= data.total
+      ) {
+        setDisableBtn(true);
+      }
+      // setProducts((prevData) => [...prevData, ...data.products]);
       setProducts(data.products);
       setLoading(false);
     } catch (error) {
@@ -25,16 +34,21 @@ const LoadMore = () => {
   };
 
   useEffect(() => {
-    fetchProducts(count);
+    fetchProducts();
   }, [count]);
 
+  // useEffect(() => {
+  //   if (products && products.length === 194) {
+  //     setDisableBtn(true);
+  //   }
+  // }, [products]);
   const handleLoadMoreBtn = () => {
     setCount(count + 1);
   };
   if (loading) {
     return (
       <div className="grid place-items-center  h-screen">
-        <div className="w-[80px] h-[80px] rounded-full border-8 border-t-pink-500 animate-spin"></div>
+        <div className="w-[80px] h-[80px] rounded-full border-8 border-b-pink-500-2 border-spacing-x-60 border-t-pink-500 animate-spin"></div>
       </div>
     );
   }
@@ -55,7 +69,7 @@ const LoadMore = () => {
             <>
               <div
                 key={product.id}
-                className="border w-[300px] h-auto p-3 flex flex-col gap-2 items-center justify-between"
+                className="border-2 border-white hover:shadow-lg hover:scale-[1.05] transition-all  rounded-lg w-[300px] h-auto p-3 flex flex-col gap-2 items-center justify-between"
               >
                 <img
                   className="w-[250px]"
@@ -83,12 +97,18 @@ const LoadMore = () => {
         })}
       </div>
       <button
-        disabled={count >= products.total ? true : false}
+        disabled={disableBtn}
         onClick={handleLoadMoreBtn}
-        className="self-center  bg-white px-10 py-2 rounded-full text-lg font-semibold"
+        className={`${
+          disableBtn ? "line-through" : ""
+        } self-center  bg-white px-10 py-2 rounded-full text-lg font-semibold`}
       >
-        Load More
+        Load More Products
       </button>
+      {console.log(disableBtn)}
+      {disableBtn ? (
+        <h1 className="text-xl">You have reached the max length</h1>
+      ) : null}
     </main>
   );
 };
