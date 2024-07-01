@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-const ScrollIndicator = ({ url }) => {
+const ScrollIndicator = ({ url, handleScrollPercentage }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
-  const [scrollPercentage, setScrollPercentage] = useState(0);
   const fetchData = async (getUrl) => {
     try {
       setLoading(true);
@@ -19,6 +18,13 @@ const ScrollIndicator = ({ url }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollPercentage);
+    return () => {
+      window.removeEventListener("scroll", () => {});
+    };
+  });
   useEffect(() => {
     fetchData(url);
   }, [url]);
