@@ -7,20 +7,22 @@ const Tabs = ({ tabs, onChange }) => {
     onChange(getCurrentIndex);
   };
   return (
-    <div className="h-screen py-5 bg-purple-500">
+    <div className="h-screen py-5 bg-purple-500 shadow-xl bg-opacity-60 backdrop-blur-56">
       <div className="flex items-center justify-center">
         {tabs.map((tabItem, index) => {
           return (
             <div
               onClick={() => handleOnClick(index)}
               className={`${
-                index === currentTabIndex ? "bg-green-800 border-b-4 " : ""
-              } bg-orange-300 p-4  cursor-pointer `}
+                index === currentTabIndex
+                  ? "bg-white  border-b-black border-b-4"
+                  : ""
+              } bg-orange-600 p-4 text-white font-semibold cursor-pointer `}
               key={tabItem.label}
             >
               <span
                 className={`${
-                  index === currentTabIndex ? "text-white font-bold" : ""
+                  index === currentTabIndex ? "text-black font-bold" : ""
                 }`}
               >
                 {tabItem.label}
