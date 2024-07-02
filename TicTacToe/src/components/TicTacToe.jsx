@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RestartModal from "./RestartModal";
 
 const Square = ({ value, onClick }) => {
   return (
@@ -13,8 +14,8 @@ const Square = ({ value, onClick }) => {
 const TicTacToe = () => {
   const [squares, setSquares] = useState(Array(9).fill(""));
   const [status, setStatus] = useState("");
-  console.log(squares);
   const [isXturn, setIsXturn] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const handleClick = (getCurrSquare) => {
     let copySquares = [...squares];
     if (getWinner(copySquares) || copySquares[getCurrSquare]) return;
@@ -56,11 +57,12 @@ const TicTacToe = () => {
   }, [squares, isXturn]);
   const handleRestart = () => {
     setIsXturn(true);
-    setSquares(Array(9).fill(""));
+    // setSquares(Array(9).fill(""));
+    setIsVisible(true);
   };
   return (
     <>
-      <div className="flex h-screen items-center flex-col">
+      <div className="relative flex h-screen items-center flex-col">
         <div className="flex items-start mt-10 justify-center">
           <div className="">
             <Square value={squares[0]} onClick={() => handleClick(0)} />
@@ -78,7 +80,7 @@ const TicTacToe = () => {
             <Square value={squares[8]} onClick={() => handleClick(8)} />
           </div>
         </div>
-        <div className="flex items-center flex-col justify-center">
+        <div className=" flex items-center flex-col justify-center">
           <h1 className="font-bold text-3xl py-4">{status}</h1>
           <button
             onClick={handleRestart}
@@ -87,6 +89,12 @@ const TicTacToe = () => {
             Restart
           </button>
         </div>
+        <RestartModal
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+          setIsXturn={setIsXturn}
+          setSquares={setSquares}
+        />
       </div>
     </>
   );
