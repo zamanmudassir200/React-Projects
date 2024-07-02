@@ -29,9 +29,9 @@ const GithubProfileFinder = () => {
     }
     // setUserName("");
   };
-  // useEffect(() => {
-  //   fetchApiGithub();
-  // }, []);
+  useEffect(() => {
+    fetchApiGithub();
+  }, []);
   if (laoding) {
     return <div>Loading please wait....</div>;
   }
@@ -48,9 +48,9 @@ const GithubProfileFinder = () => {
   return (
     <div className="min-h-screen px-4">
       <div className="flex flex-col max-w-[800px] items-center  justify-start mx-auto min-h-screen  pt-6 ">
-        <h1 className="font-bold text-xl py-4">Github Profile Finder</h1>
+        <h1 className="font-bold text-xl py-2">Github Profile Finder</h1>
 
-        <div className="flex sm:flex-row flex-col   p-2 justify-center w-[80%] sm:w-full  py-6">
+        <div className="flex sm:flex-row flex-col  justify-center w-[100%] sm:w-full  py-6">
           <input
             onChange={(e) => setUserName(e.target.value)}
             className="p-2 outline-none border-2 font-bold border-blue-700 sm:w-[40%]"
@@ -70,47 +70,54 @@ const GithubProfileFinder = () => {
             Search
           </button>
         </div>
-        <div className=" mx-auto w-full mt-4 border-2 ">
-          <div className="flex sm:flex-row flex-col items-center gap-5 justify-center p-4 ">
-            <div className="">
-              <img
-                className="w-[260px] rounded-full"
-                src={userData.avatar_url}
-                alt=""
-              />
-            </div>
-            <div className="">
-              <h1 className="font-bold text-xl">{userData.name}</h1>
-              <a href={`https://github.com/${userData.login}`} target="_blank">
-                <b>Username: </b> {userData.login}
-              </a>
+        {userData.login !== "" ? (
+          <div className=" mx-auto w-full mt-4 border-2 ">
+            <div className="flex sm:flex-row flex-col items-center gap-5 justify-center p-4 ">
+              <div className="">
+                <img
+                  className="w-[260px] rounded-full"
+                  src={userData.avatar_url}
+                  alt=""
+                />
+              </div>
+              <div className="">
+                <h1 className="font-bold text-xl">{userData.name}</h1>
+                <a
+                  href={`https://github.com/${userData.login}`}
+                  target="_blank"
+                >
+                  <b>Username: </b> {userData.login}
+                </a>
 
-              <p>
-                <b>
-                  {userData.public_repos > 1
-                    ? "Public Repositories: "
-                    : "Public Repository: "}
-                </b>
-                {userData.public_repos}
-              </p>
-              <h1>
-                <b>User joined on:</b>{" "}
-                {`${createdDate.getDate()}  ${createdDate.toLocaleString(
-                  "en-us",
-                  { month: "short" }
-                )} ${createdDate.getFullYear()}`}{" "}
-              </h1>
-              <h1>
-                <b>{userData.followers > 1 ? "Followers: " : "Follower: "}</b>
-                {userData.followers}
-              </h1>
-              <h1>
-                <b>{userData.following > 1 ? "Followings: " : "Following: "}</b>
-                {userData.following}
-              </h1>
+                <p>
+                  <b>
+                    {userData.public_repos > 1
+                      ? "Public Repositories: "
+                      : "Public Repository: "}
+                  </b>
+                  {userData.public_repos}
+                </p>
+                <h1>
+                  <b>User joined on:</b>{" "}
+                  {`${createdDate.getDate()}  ${createdDate.toLocaleString(
+                    "en-us",
+                    { month: "short" }
+                  )} ${createdDate.getFullYear()}`}{" "}
+                </h1>
+                <h1>
+                  <b>{userData.followers > 1 ? "Followers: " : "Follower: "}</b>
+                  {userData.followers}
+                </h1>
+                <h1>
+                  <b>
+                    {userData.following > 1 ? "Followings: " : "Following: "}
+                  </b>
+                  {userData.following}
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
