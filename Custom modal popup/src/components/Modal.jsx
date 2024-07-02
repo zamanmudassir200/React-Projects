@@ -12,7 +12,7 @@ const Modal = ({ isVisible, onClose }) => {
 
   const handleFormInputs = (e) => {
     e.preventDefault();
-    if (name.trim() !== "" || email.trim() !== "" || password.trim() !== "") {
+    if (name.trim() !== "" && email.trim() !== "" && password.trim() !== "") {
       setFormModal(true);
       setNameText(name);
       setEmailText(email);
