@@ -5,7 +5,7 @@ const CustomModal = ({ handleModal, isVisible, onClose }) => {
   return (
     <>
       <div className="relative">
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center justify-center h-[calc(100vh-70px)]">
           <button
             onClick={handleModal}
             className="bg-red-400 p-3 rounded-2xl hover:bg-red-800 hover:text-white font-bold transition-all text-xl font"

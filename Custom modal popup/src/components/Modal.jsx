@@ -5,7 +5,7 @@ const Modal = ({ isVisible, onClose }) => {
     <div
       className={`${
         isVisible ? "block" : "hidden"
-      } absolute top-0 py-10 bg-red-500 h-screen w-full bg-opacity-55`}
+      } absolute top-0 py-10 bg-red-500 h-[calc(100vh-70px)] w-full bg-opacity-55`}
     >
       <div className="relative flex flex-col h-[600px] border-2 border-black max-w-[900px] items-center gap-8 bg-white rounded-md text-xl justify-center mx-auto">
         <div
