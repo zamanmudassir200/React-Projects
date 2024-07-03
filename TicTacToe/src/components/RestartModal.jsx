@@ -15,10 +15,10 @@ const RestartModal = ({ isVisible, setSquares, setIsXturn, setIsVisible }) => {
     <div
       className={` ${
         isVisible ? "block absolute" : "hidden"
-      }  top-[200px] gap-4  rounded-lg h-[250px] px-5 py-2 flex flex-col items-center justify-center max-w-[800px]  `}
+      }   gap-4  rounded-lg bg-white  w-full bg-opacity-100 drop-shadow-lg h-screen px-5 py-2 flex flex-col items-center justify-center   `}
     >
       <div
-        className={` gap-4 rounded-lg h-[250px] px-5 py-2 flex flex-col items-center justify-center max-w-[800px] bg-red-500 text-white`}
+        className={`top-[200px] gap-4 rounded-lg h-[250px] px-5 py-2 flex flex-col items-center justify-center  bg-red-500 text-white`}
       >
         <div className="">Are your sure? You want to restart the game?</div>
         <div className="flex gap-6">

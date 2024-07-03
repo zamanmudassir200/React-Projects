@@ -81,7 +81,7 @@ const TicTacToe = () => {
           </div>
         </div>
         <div className=" flex items-center flex-col justify-center">
-          <h1 className="font-bold text-3xl py-4">{status}</h1>
+          <h1 className="font-bold text-center text-3xl py-4">{status}</h1>
           <button
             onClick={handleRestart}
             className="bg-red-600 text-white font-bold px-5 py-3 rounded-3xl"
