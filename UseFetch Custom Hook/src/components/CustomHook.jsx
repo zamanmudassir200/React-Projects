@@ -11,7 +11,7 @@ const CustomHook = () => {
   if (pending) {
     return (
       <div className="flex items-center justify-center h-screen font-bold text-xl">
-        <h1>Pending! please wait...</h1>;
+        <h1>Pending! please wait...</h1>
       </div>
     );
   }
@@ -30,7 +30,7 @@ const CustomHook = () => {
       {data && data.products && data.products.length
         ? data.products.map((productItem) => {
             return (
-              <div className="text-xl" key={productItem.id}>
+              <div className="text-xl pb-4" key={productItem.id}>
                 {productItem.title}
               </div>
             );
