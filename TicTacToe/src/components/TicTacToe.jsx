@@ -50,7 +50,7 @@ const TicTacToe = () => {
     if (!getWinner(squares) && squares.every((item) => item !== "")) {
       setStatus("This is Draw! Please restart the game");
     } else if (getWinner(squares)) {
-      setStatus(`Winner is ${getWinner(squares)}`);
+      setStatus(`Winner is ${getWinner(squares)}. Please restart the game`);
     } else {
       setStatus(`Next player is ${isXturn ? "X" : "O"}`);
     }
