@@ -1,7 +1,12 @@
 import "./App.css";
+import CustomHook from "./components/CustomHook";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <CustomHook />
+    </>
+  );
 }
 
 export default App;
