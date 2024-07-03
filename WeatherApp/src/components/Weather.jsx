@@ -166,6 +166,7 @@ const Weather = () => {
 
   const handleSearch = async () => {
     fetchWeatherData(search);
+    setSearch("");
   };
 
   if (loading) {
