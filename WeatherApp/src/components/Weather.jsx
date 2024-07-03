@@ -170,8 +170,9 @@ const Weather = () => {
 
   if (loading) {
     return (
-      <div className="text-xl flex items-center justify-center h-screen font-bold">
+      <div className="text-xl flex flex-col items-center gap-4 justify-center h-screen font-bold">
         <h1 className="text-center">Loading data! Please wait....</h1>
+        <div className="h-[50px]  w-[50px] border-t-4 border-b-4 border-blue-500 rounded-full  animate-spin"></div>
       </div>
     );
   }
@@ -198,7 +199,7 @@ const Weather = () => {
           handleSearch={handleSearch}
         />
         {errMsg !== null ? (
-          <div className="text-xl flex flex-col items-center justify-center  font-bold">
+          <div className="text-xl flex px-2 flex-col items-center justify-center  font-bold">
             <h1 className="text-center">
               Error Occurred! <span className="text-red-300">{errMsg}</span>
             </h1>
