@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const useFetch = (url, options = {}) => {
+const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState(false);
@@ -8,7 +8,7 @@ const useFetch = (url, options = {}) => {
   const fetchData = async () => {
     try {
       setPending(true);
-      const response = await fetch(url, { ...options });
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error(response.statusText);
       }
